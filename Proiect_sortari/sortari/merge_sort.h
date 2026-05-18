@@ -8,7 +8,7 @@
 
 #endif //PROIECT_SORTARI_MERGE_SORT_H
 inline void merge(int *dest, int* source1,const int size1,int* source2,const int size2) {
-    vector<int> temp(size1+size2);
+    std::vector<int> temp(size1+size2);
     int i=0,j=0;
     while (i<size1 && j<size2) {
         if (source1[i] <= source2[j]) {
