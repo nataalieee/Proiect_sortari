@@ -8,7 +8,7 @@
 #include <vector>
 
 
-void radix_sort(std::vector<int>& arr) {
+void radix_sort1(std::vector<int>& arr) {
     std::vector<int> temp(arr.size());
     std::vector<int> cnt1(65536,0),cnt2(65536,0);
     bool skip1,skip2;
@@ -41,7 +41,50 @@ void radix_sort(std::vector<int>& arr) {
         arr.swap(temp);
     }
 }
+void radix_sort2(std::vector<int>& arr) {
+    std::vector<int> temp(arr.size());
+    std::vector<int> cnt1(2048,0),cnt2(2048,0),cnt3(2048,0);
+    bool skip1,skip2,skip3;
+    skip1=skip2=skip3=false;
+    for (auto elem : arr) {
+        cnt1[elem&0x7ff]++;
+        cnt2[elem>>11&0x7ff]++;
+        cnt3[elem>>22&0x7ff]++;
+    }
+    if (cnt1[0]==arr.size())skip1=true;
+    if (cnt2[0]==arr.size())skip2=true;
+    if (cnt3[0]==arr.size())skip3=true;
+    for (int i=1;i<2048;i++) {
+        cnt1[i]+=cnt1[i-1];
+        cnt2[i]+=cnt2[i-1];
+        cnt3[i]+=cnt3[i-1];
+    }
+    for (int i=2047;i>0;i--) {
+        cnt1[i]=cnt1[i-1];
+        cnt2[i]=cnt2[i-1];
+        cnt3[i]=cnt3[i-1];
+    }
+    cnt1[0]=cnt2[0]=cnt3[0]=0;
+    if (!skip1) {
+        for (auto elem : arr) {
+            temp[cnt1[elem&0x7ff]++]=elem;
+        }
+        arr.swap(temp);
+    }
+    if (!skip2) {
+        for (auto elem : arr) {
+            temp[cnt1[elem>>11&0x7ff]++]=elem;
+        }
+        arr.swap(temp);
+    }
+    if (!skip3) {
+        for (auto elem : arr) {
+            temp[cnt1[elem>>22&0x7ff]++]=elem;
+        }
+        arr.swap(temp);
+    }
+}
 void customsort(std::vector<int>& v) {
-    radix_sort(v);
+    radix_sort2(v);
 }
 #endif //PROIECT_SORTARI_RADIX_SORT_H
