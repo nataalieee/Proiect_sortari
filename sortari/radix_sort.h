@@ -7,7 +7,7 @@
 #include <cstring>
 #include <vector>
 
-#endif //PROIECT_SORTARI_RADIX_SORT_H
+
 void radix_sort(std::vector<int>& arr) {
     std::vector<int> temp(arr.size());
     std::vector<int> cnt1(65536,0),cnt2(65536,0);
@@ -19,15 +19,15 @@ void radix_sort(std::vector<int>& arr) {
     }
     if (cnt1[0]==arr.size())skip1=true;
     if (cnt2[0]==arr.size())skip2=true;
-    for (int i=1;i<0xffff;i++) {
+    for (int i=1;i<=0xffff;i++) {
         cnt1[i]+=cnt1[i-1];
         cnt2[i]+=cnt2[i-1];
     }
-    for (int i=0xffff-1;i>0;i--) {
+    for (int i=0xffff;i>0;i--) {
         cnt1[i]=cnt1[i-1];
         cnt2[i]=cnt2[i-1];
     }
-    cnt1[0]=cnt2[0];
+    cnt1[0]=cnt2[0]=0;
     if (!skip1) {
         for (auto elem : arr) {
             temp[cnt1[elem&0xffff]++]=elem;
@@ -44,3 +44,4 @@ void radix_sort(std::vector<int>& arr) {
 void customsort(std::vector<int>& v) {
     radix_sort(v);
 }
+#endif //PROIECT_SORTARI_RADIX_SORT_H
