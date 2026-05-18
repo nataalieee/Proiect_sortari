@@ -1,0 +1,3 @@
+C:/Users/natal/Desktop/SEM II facultate/SD/Proiect_sortari/cmake-build-debug/CMakeFiles/Proiect_sortari.dir
+C:/Users/natal/Desktop/SEM II facultate/SD/Proiect_sortari/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/natal/Desktop/SEM II facultate/SD/Proiect_sortari/cmake-build-debug/CMakeFiles/rebuild_cache.dir

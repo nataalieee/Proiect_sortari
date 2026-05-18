@@ -1,0 +1,52 @@
+#!/usr/bin/python3
+import os
+import time
+
+
+params = [
+    #N, iar apoi seed
+    [20000, 1], 
+    [20000, 2], 
+    [20000, 3], 
+
+    [10**7, 1],
+    [10**7, 2],
+    [10**7, 3],
+]   
+
+
+
+ok_solution = "main"
+
+os.system("g++ -D LOCAL -std=c++20 -O2 gen.cpp -o gen")
+os.system(f"g++ -D LOCAL -std=c++20 -O2 {ok_solution}.cpp -o {ok_solution}")
+
+
+def check_solution(name, curr_tag):
+    print(f"RULEZ {name}")
+    ret_code = os.system(f"time ./{name} < tests/{curr_tag}.in > /dev/null")   
+    # check = os.system(f"diff -qBbEa test.out tests/{curr_tag}.out > /dev/null")
+    if(ret_code != 0):
+        print(f"{name} WRONG!")         
+        return 1
+    else: 
+        print(f"{name} PASSED!")
+        return 0
+i = 0
+tag = "{}_{}"
+delta = 0
+while i < len(params):
+    if params[i][0] == 20000:
+        curr_tag = tag.format("small_team1", i + delta)
+    else:
+        curr_tag = tag.format("big_team1", i + delta);
+    os.system(f"./gen {' '.join([str(x) for x in params[i]])} > tests/{curr_tag}.in")
+    os.system(f"./{ok_solution} < tests/{curr_tag}.in > tests/{curr_tag}.out")
+
+    print(f"TEST: {curr_tag}")
+
+    cnt = 0
+    if check_solution(ok_solution, curr_tag) == 1: 
+        print(f"Failed at parameter index {i}")
+    print()
+    i += 1
