@@ -73,13 +73,13 @@ void radix_sort2(std::vector<int>& arr) {
     }
     if (!skip2) {
         for (auto elem : arr) {
-            temp[cnt1[elem>>11&0x7ff]++]=elem;
+            temp[cnt2[elem>>11&0x7ff]++]=elem;
         }
         arr.swap(temp);
     }
     if (!skip3) {
         for (auto elem : arr) {
-            temp[cnt1[elem>>22&0x7ff]++]=elem;
+            temp[cnt3[elem>>22&0x7ff]++]=elem;
         }
         arr.swap(temp);
     }
