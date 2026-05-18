@@ -64,7 +64,7 @@ int32_t main(int32_t argc, char *argv[]) {
     // ios_base::sync_with_stdio(false);
     int N = atoi(argv[1]);
     int seed = atoi(argv[2]);
-    uniform_int_distribution<int>A(1, (1LL << 31) - 1);
+    uniform_int_distribution<int>A(1, (1LL << 29));
     cout << N << "\n";
     vector<int>B(N);
     for(int i = 0; i < N; i++) {

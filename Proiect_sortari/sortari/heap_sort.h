@@ -7,22 +7,16 @@
 
 #endif //PROIECT_SORTARI_HEAP_SORT_H
 
-void heapify_top_down(std::vector<int>& v, int poz, int size ) {
-    int maxim=poz;
-    for (int i=poz;2*i+1<size;i++) {
-        int maxim=poz;
-        if (v[2*poz+1]>v[maxim]) maxim=2*poz+1;
-        if (2*poz+2<size && v[2*poz+2]>v[maxim]) maxim=2*poz+2;
-        if (maxim==poz)return;
-        std::swap(v[poz],v[maxim]);
-    }
-   /* if (2*poz+1<size && v[2*poz+1]>v[maxim]) maxim=2*poz+1;
-    if (2*poz+2<size && v[2*poz+2]>v[maxim]) maxim=2*poz+2;
-    if (maxim!=poz) {
-        std::swap(v[poz],v[maxim]);
-        heapify_top_down(v,maxim,size);
-    }*/
 
+void heapify_top_down(std::vector<int>& v, int poz, int size) {
+    while (2*poz+1 < size) {
+        int maxim = poz;
+        if (v[2*poz+1] > v[maxim]) maxim = 2*poz+1;
+        if (2*poz+2 < size && v[2*poz+2] > v[maxim]) maxim = 2*poz+2;
+        if (maxim == poz) return;
+        std::swap(v[poz], v[maxim]);
+        poz = maxim;
+    }
 }
 
 void heap_sort(std::vector<int>&v) {
