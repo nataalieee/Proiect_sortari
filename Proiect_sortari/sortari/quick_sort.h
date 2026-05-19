@@ -46,8 +46,12 @@ void quicksort(std::vector<int>&A, std::vector<int>&B, int st, int dr) {
     if(st < dr)
     {
         int piv = partition(A, B, st, dr);
-        quicksort(A, B, st, piv - 1);
-        quicksort(A, B, piv + 1, dr);
+        int idx1 = piv - 1;
+        int idx2 = piv + 1;
+        while(A[idx1] == A[piv] && idx1 > st) idx1--;
+        while(A[idx2] == A[piv] && idx2 < dr) idx2++;
+        quicksort(A, B, st, idx1);
+        quicksort(A, B, idx2, dr);
     }
 }
 void customsort(std::vector<int> &v)

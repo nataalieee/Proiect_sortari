@@ -71,11 +71,11 @@ int32_t main(int32_t argc, char *argv[]) {
         B[i] = A(rng);
     }
     
-    // if(seed == 1) {
-    //     for(int i = 0; i < N; i++) {
-    //         B[i] %= 100;
-    //     }
-    // }
+    if(seed == 1) {
+        for(int i = 0; i < N; i++) {
+            B[i] %= 100;
+        }
+    }
     if(seed == 2) {
         sort(B.begin(), B.end());
         reverse(B.begin(), B.end());
@@ -90,6 +90,16 @@ int32_t main(int32_t argc, char *argv[]) {
             reverse(B.begin() + le, B.begin() + ri);
         }
     }
+
+    if(seed == 4) {
+        for(int i = 0; i < B.size(); i++) B[i] %= 10;
+    }
+
+    if(seed == 6) {
+        uniform_int_distribution<int> A1(500000000, 1000000000);
+        for(int i = 0; i < B.size(); i++) B[i] = A1(rng); 
+    }
+
 
     for(auto i : B) cout << i << ' ';
 }   

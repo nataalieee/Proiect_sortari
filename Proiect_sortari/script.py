@@ -2,16 +2,27 @@
 import os
 import time
 
+#seed 1: numere random intre 1 si 1000
+#seed 2: vectorul e sortat descrescator
+#seed 3: vectorul e sortat descrescator in bucket-uri de 400
+#seed 4: numere random intre 1 si 10
+#seed 5: numere random
+#seed 6: numere random intre 5 * 10^8 si 10^9
 
 params = [
     #N, iar apoi seed
     [20000, 1], 
     [20000, 2], 
     [20000, 3], 
+    [20000, 4],
+    [20000, 5],
 
     [10**7, 1],
     [10**7, 2],
     [10**7, 3],
+    [10**7, 4],
+    [10**7, 5],
+    [10**7, 6],
 ]   
 
 
@@ -47,6 +58,7 @@ while i < len(params):
 
     cnt = 0
     if check_solution(ok_solution, curr_tag) == 1: 
-        print(f"Failed at parameter index {i}")
+        print(f"Failed")
     print()
     i += 1
+
