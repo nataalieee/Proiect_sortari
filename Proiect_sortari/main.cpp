@@ -1,7 +1,7 @@
 #include <iostream>
 #include <algorithm>
 #include <assert.h>
-#include "sortari/radix_sort2.h"
+#include "sortari/patience_sort.h"
 int main() {
     std::cin.tie(0); std::cout.tie(0);
     std::ios_base::sync_with_stdio(false);
