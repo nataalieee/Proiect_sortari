@@ -8,6 +8,9 @@ import time
 #seed 4: numere random intre 1 si 10
 #seed 5: numere random
 #seed 6: numere random intre 5 * 10^8 si 10^9
+#seed 7: crescator pana la mijloc si descrescator in continuare
+#seed 8: permutare circulara
+#seed 9: 2 subsiruri crescatoare
 
 params = [
     #N, iar apoi seed
@@ -16,13 +19,17 @@ params = [
     [20000, 3], 
     [20000, 4],
     [20000, 5],
+    [20000, 6],
+    [20000, 7],
+    [20000, 8],
+    [20000, 9],
 
-    [10**7, 1],
-    [10**7, 2],
-    [10**7, 3],
-    [10**7, 4],
-    [10**7, 5],
-    [10**7, 6],
+    # [10**7, 1],
+    # [10**7, 2],
+    # [10**7, 3],
+    # [10**7, 4],
+    # [10**7, 5],
+    # [10**7, 6],
 ]   
 
 

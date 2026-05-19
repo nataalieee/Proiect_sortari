@@ -84,7 +84,7 @@ int32_t main(int32_t argc, char *argv[]) {
         int bucket_size = 400;
         for(int i = 0; i < B.size(); i += bucket_size) {
             int le = i;
-            int ri = min(i + bucket_size - 1, (int) B.size() - 1);
+            int ri = min(i + bucket_size, (int) B.size());
                if(le > ri) continue;
             sort(B.begin() + le, B.begin() + ri);
             reverse(B.begin() + le, B.begin() + ri);
@@ -100,6 +100,68 @@ int32_t main(int32_t argc, char *argv[]) {
         for(int i = 0; i < B.size(); i++) B[i] = A1(rng); 
     }
 
+    if(seed == 7) {
+        sort(B.begin(), B.begin() + B.size() / 2);
+        sort(B.begin() + B.size() / 2, B.end());
+        reverse(B.begin() + B.size() / 2, B.end());
+    }
+
+    if(seed == 8) {
+        vector<int>v1, v2;
+        for(int i = 0; i < N / 2; i++) {
+            v1.push_back(i);
+        }
+        for(int i = N / 2; i < N; i++) {
+            v2.push_back(i);
+        }
+        reverse(v2.begin(), v2.end());
+        reverse(v1.begin(), v1.end());
+
+        for(int i = 0; i < B.size(); i++) {
+            if(!v2.empty()) {
+                B[i] = v2.back();
+                v2.pop_back();
+            }
+            else {
+                B[i] = v1.back();
+                v1.pop_back();
+            }
+        }
+    }
+
+    if(seed == 9) {
+        uniform_int_distribution<int>bin(0, 1);
+        vector<int>v1, v2;
+        for(int i = 0; i < B.size() / 2; i++) {
+            v1.push_back(B[i]);
+        }
+        for(int i = B.size() / 2; i < N; i++) {
+            v2.push_back(B[i]);
+        }
+
+        sort(v1.begin(), v1.end());
+        sort(v2.begin(), v2.end());
+        reverse(v1.begin(), v1.end());
+        reverse(v2.begin(), v2.end());
+
+        for(int i = 0; i < B.size(); i++) {
+            bool bn = bin(rng);
+            if(bn == 0 && !v1.empty()) {
+                B[i] = v1.back();
+                v1.pop_back();
+            }
+            else {
+                if(!v2.empty()) {
+                    B[i] = v2.back();
+                    v2.pop_back();
+                }
+                else {
+                    B[i] = v1.back();
+                    v1.pop_back();
+                }
+            }
+        }
+    }
 
     for(auto i : B) cout << i << ' ';
 }   
